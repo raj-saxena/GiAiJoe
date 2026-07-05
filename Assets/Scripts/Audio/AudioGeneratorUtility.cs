@@ -12,11 +12,13 @@ namespace GiAiJoe.Audio
         private const int SampleRate = 44100;
 
         /// <summary>
-        /// Generates a sine-wave AudioClip with a tone at ~440 Hz lasting ~0.1 seconds.
+        /// Generates a sine-wave AudioClip with a tone at the specified frequency lasting ~0.1 seconds.
         /// </summary>
+        /// <param name="frequency">Frequency in Hz (default 440 Hz = A4 note). Pass null to use default.</param>
         /// <returns>A new AudioClip containing the procedurally generated tone.</returns>
-        public static AudioClip GenerateToneClip()
+        public static AudioClip GenerateToneClip(float? frequency = null)
         {
+            float freq = frequency ?? ToneFrequency;
             int sampleCount = (int)(SampleRate * ToneDuration);
 
             // Create the audio clip
@@ -33,7 +35,7 @@ namespace GiAiJoe.Audio
             for (int i = 0; i < sampleCount; i++)
             {
                 float time = (float)i / SampleRate;
-                samples[i] = Mathf.Sin(2f * Mathf.PI * ToneFrequency * time);
+                samples[i] = Mathf.Sin(2f * Mathf.PI * freq * time);
             }
 
             // Apply a simple fade-out to avoid clicks

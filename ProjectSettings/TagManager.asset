@@ -44,6 +44,21 @@ TagManager:
   - name: Tiles
     uniqueID: 1
     locked: 0
+  - name: Background
+    uniqueID: 2
+    locked: 0
+  - name: Habitats
+    uniqueID: 3
+    locked: 0
+  - name: Animals
+    uniqueID: 4
+    locked: 0
+  - name: AnimalsInTransit
+    uniqueID: 5
+    locked: 0
+  - name: UI
+    uniqueID: 6
+    locked: 0
   m_RenderingLayers:
   - Default
   m_MigratedRenderPipelines: []
