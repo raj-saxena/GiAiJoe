@@ -1,0 +1,43 @@
+version: '3'
+
+vars:
+  UNITY: /Applications/Unity/Hub/Editor/6000.5.2f1/Unity.app/Contents/MacOS/Unity
+  PROJECT: .
+
+tasks:
+  test:editmode:
+    desc: Run EditMode tests in batchmode
+    cmds:
+      - "{{.UNITY}} -batchmode -projectPath {{.PROJECT}} -runTests -testPlatform editmode -testResults ./TestResults/editmode-results.xml -logFile -"
+
+  test:playmode:
+    desc: Run PlayMode tests in batchmode
+    cmds:
+      - "{{.UNITY}} -batchmode -projectPath {{.PROJECT}} -runTests -testPlatform playmode -testResults ./TestResults/playmode-results.xml -logFile -"
+
+  test:
+    desc: Run EditMode and PlayMode tests
+    cmds:
+      - task: test:editmode
+      - task: test:playmode
+
+  build:ios:
+    desc: Build the iOS Xcode project
+    cmds:
+      - "{{.UNITY}} -batchmode -projectPath {{.PROJECT}} -executeMethod BuildScript.BuildiOS -logFile -"
+
+  build:android:
+    desc: Build the Android .aab
+    cmds:
+      - "{{.UNITY}} -batchmode -projectPath {{.PROJECT}} -executeMethod BuildScript.BuildAndroid -logFile -"
+
+  build:
+    desc: Build iOS and Android
+    cmds:
+      - task: build:ios
+      - task: build:android
+
+  clean:testresults:
+    desc: Remove stray TestResults files, keep only the canonical two
+    cmds:
+      - find ./TestResults -type f -name "*.xml" ! -name "editmode-results.xml" ! -name "playmode-results.xml" -delete
