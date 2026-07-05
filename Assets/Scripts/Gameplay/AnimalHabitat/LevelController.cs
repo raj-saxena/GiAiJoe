@@ -1,5 +1,7 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 
 namespace GiAiJoe.Gameplay.AnimalHabitat
@@ -18,6 +20,12 @@ namespace GiAiJoe.Gameplay.AnimalHabitat
 
         [SerializeField]
         private Transform habitatsContainer;
+
+        [SerializeField]
+        private float autoAdvanceDelaySeconds = 1.5f;
+
+        [SerializeField]
+        private bool autoAdvanceOnComplete = true;
 
         private List<DropZone> dropZones = new List<DropZone>();
         private List<Draggable> draggables = new List<Draggable>();
@@ -87,7 +95,31 @@ namespace GiAiJoe.Gameplay.AnimalHabitat
             {
                 levelCompleted = true;
                 OnLevelComplete?.Invoke();
+
+                if (autoAdvanceOnComplete && Application.isPlaying)
+                {
+                    StartCoroutine(AutoAdvanceAfterDelay());
+                }
             }
+        }
+
+        /// <summary>
+        /// Reloads the active scene after a delay, giving the celebration beat time to play.
+        /// This is the "loop back to the same level" hook noted in the level spec until
+        /// multiple levels exist to advance between.
+        /// </summary>
+        private IEnumerator AutoAdvanceAfterDelay()
+        {
+            yield return new WaitForSeconds(autoAdvanceDelaySeconds);
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        }
+
+        /// <summary>
+        /// Disables auto-advance, e.g. for tests that don't want a scene reload side effect.
+        /// </summary>
+        public void SetAutoAdvanceOnComplete(bool enabled)
+        {
+            autoAdvanceOnComplete = enabled;
         }
 
         private void HandleWrongMatch()
