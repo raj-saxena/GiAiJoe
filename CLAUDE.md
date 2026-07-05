@@ -13,6 +13,7 @@ Language: C#.
 - Tap targets minimum 44pt equivalent.
 - Isometric depth via Sorting Layers/Order in Layer, not Z-position — keep this consistent project-wide.
 - Test runs overwrite the canonical `TestResults/editmode-results.xml` / `playmode-results.xml` — no ad-hoc copies (`-verify`, `-final-check`, etc.).
+- Rendering: Universal Render Pipeline (URP) with 2D Renderer — no Built-in pipeline features.
 
 ## Commands
 - Test (batchmode, EditMode): `/Applications/Unity/Hub/Editor/6000.5.2f1/Unity.app/Contents/MacOS/Unity -batchmode -projectPath . -runTests -testPlatform editmode -testResults ./TestResults/editmode-results.xml -logFile -`
