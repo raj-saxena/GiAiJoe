@@ -2,72 +2,50 @@
 
 ## Animal Habitat Level 1 Sprites
 
-### Status: PLACEHOLDERS (Pending Real Art Sourcing)
+### Status: REAL ART (Sourced 2026-07-05)
 
-The sprite assets in `Assets/Art/AnimalHabitat/` are **temporary programmatic placeholders** generated for development and testing purposes. They are NOT final art and must be replaced with proper CC0 or licensed artwork before shipping to the App Store or Play Store.
+The sprite assets in `Assets/Art/AnimalHabitat/` are sourced from the licensed packs below, cropped/resized to the project's target dimensions (56×56 animals, 180×80 habitats).
 
-### Current Placeholders
+## Kenney Animal Pack Redux
 
-| Sprite | File | Dimensions | Type | Notes |
-|--------|------|------------|------|-------|
-| Lion | Lion.png | 56×56 px | Animal | Placeholder: orange circle with "L" label |
-| Fish | Fish.png | 56×56 px | Animal | Placeholder: blue circle with "F" label |
-| Cow | Cow.png | 56×56 px | Animal | Placeholder: brown circle with "C" label |
-| Ocean | Ocean.png | 180×80 px | Habitat | Placeholder: deep blue rectangle with "OCEAN" label |
-| Savanna | Savanna.png | 180×80 px | Habitat | Placeholder: golden tan rectangle with "SAVANNA" label |
-| Farm | Farm.png | 180×80 px | Habitat | Placeholder: green rectangle with "FARM" label |
+- **Source**: https://opengameart.org/content/animal-pack-redux (mirrors https://kenney.nl/assets/animal-pack-redux)
+- **License**: CC0 (Public Domain)
+- **Attribution Required**: No
+- **Assets Used**:
+  - Cow.png (from `PNG/Round without details/cow.png`)
 
-### Recommended Real Art Sources
+## Kenney Fish Pack
 
-For production art, consider these CC0 or commercial-use-friendly sources:
+- **Source**: https://opengameart.org/content/fish-pack-0 (mirrors https://kenney.nl/assets/fish-pack)
+- **License**: CC0 (Public Domain)
+- **Attribution Required**: No
+- **Assets Used**:
+  - Fish.png (from `PNG/Default/fish_blue.png`)
 
-1. **Kenney.nl** (Excellent for game assets, CC0 license)
-   - URL: https://kenney.nl/
-   - Asset Packs: Look for "Animal Pack" or "Creatures" collections
-   - License: CC0 (Public Domain) — explicitly allows commercial use
+## Kenney RPG Pack: Base Set
 
-2. **Open Game Art** (Community-contributed, various licenses)
-   - URL: https://opengameart.org/
-   - Search for animal sprites, habitat backgrounds
-   - Verify each asset's license before use
+- **Source**: https://opengameart.org/content/rpg-pack-base-set (mirrors https://kenney.nl/)
+- **License**: CC0 (Public Domain)
+- **Attribution Required**: No
+- **Assets Used**:
+  - Ocean.png (tiled from `PNG/rpgTile029.png`)
+  - Savanna.png (tiled from `PNG/rpgTile052.png`)
+  - Farm.png (tiled from `PNG/rpgTile004.png`)
 
-3. **Itch.io Free Assets** (Curated collections)
-   - URL: https://itch.io/
-   - Filter: "free" and "CC0" or "public domain"
-   - Many quality animal and game art packs
+## LPC Animals 2022 ("[LPC] bears, deer, lions and more")
 
-### Sourcing Requirements for Replacement
-
-When sourcing real art, ensure:
-- **License**: CC0, CC-BY, or explicit "free for commercial use" statement
-- **Format**: Transparent PNG (RGBA)
-- **Animal Sprites**: 56×56 px, 1:1 aspect ratio (or scale to fit)
-- **Habitat Sprites**: 180×80 px, ~2.25:1 aspect ratio (or scale to fit)
-- **Style**: Toddler-friendly, recognizable, non-scary
-
-### Attribution Template
-
-Once real art is sourced, replace this file with entries like:
-
-```markdown
-## [Pack Name]
-
-- **Source**: [URL]
-- **License**: [License Type] ([Link to license if not obvious])
-- **Attribution Required**: Yes/No
-- **Attribution Text** (if needed):
+- **Source**: https://opengameart.org/content/lpc-bears-deer-lions-and-more
+- **Author**: tapatilorenzo
+- **License**: CC0 for non-derivative works (per author's submission notes, the pack mixes CC0 originals with a few sprites adapted from Sevarihk under CC-BY 4.0; the lion is an original, non-derivative piece and falls under the CC0 grant)
+- **Attribution Required**: No (credited below as a courtesy)
+- **Attribution Text** (courtesy, not required):
   ```
-  [Exact attribution text from asset pack]
+  Lion sprite by tapatilorenzo (opengameart.org/content/lpc-bears-deer-lions-and-more)
   ```
 - **Assets Used**:
-  - Lion.png (from [Asset Name])
-  - Fish.png (from [Asset Name])
-  - etc.
-```
+  - Lion.png (single frame cropped from `individual creature spritesheets/lion.png`, row 2 col 1 of the walk cycle — standing side profile)
 
 ### Notes
 
-- Placeholders are purely functional (development aids) and must not ship
-- Update this file when real art is imported
-- Verify licenses are compatible with App Store and Play Store distribution
-- If redistributing art within the app or in documentation, include proper attribution
+- Verify licenses are compatible with App Store and Play Store distribution before shipping (all are CC0/public-domain-equivalent; no license blockers)
+- If any of these packs are ever replaced, update this file and `Assets/Art/AnimalHabitat/README.md` together
