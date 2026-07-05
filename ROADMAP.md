@@ -8,6 +8,7 @@ Milestones, tasks, and assignees. Agent names refer to `.claude/agents/*.md`.
 - [x] Hello-world tile-tap vertical slice (bounce + beep) — `game-developer`
 - [x] EditMode/PlayMode test scaffolding, 18/18 passing — `game-developer`
 - [x] First iOS + Android builds — `bootstrap-platform-engineer`
+- [x] Migrate Built-in RP to URP (2D Renderer) — `bootstrap-platform-engineer`
 
 ## M1 — Hardening (pending)
 
