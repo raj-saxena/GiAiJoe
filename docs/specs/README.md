@@ -5,3 +5,4 @@ One line per spec. Read the spec itself only when you need the detail — this i
 | Spec | Status |
 |------|--------|
 | [tile-tap-hello-world.md](tile-tap-hello-world.md) | Implemented — vertical-slice toolchain check (tile bounce + beep) |
+| [animal-habitat-level-1.md](animal-habitat-level-1.md) | Ready for Implementation — first real gameplay level (drag-and-drop matching) |

@@ -5,6 +5,11 @@ vars:
   PROJECT: .
 
 tasks:
+  validate:scenes:
+    desc: Validate all scene/prefab Transform hierarchies (fast, no Unity launch)
+    cmds:
+      - "find Assets -name '*.unity' -o -name '*.prefab' | xargs python3 Tools/validate_scene_hierarchy.py"
+
   test:editmode:
     desc: Run EditMode tests in batchmode
     cmds:
@@ -16,8 +21,9 @@ tasks:
       - "{{.UNITY}} -batchmode -projectPath {{.PROJECT}} -runTests -testPlatform playmode -testResults ./TestResults/playmode-results.xml -logFile -"
 
   test:
-    desc: Run EditMode and PlayMode tests
+    desc: Validate scenes, then run EditMode and PlayMode tests
     cmds:
+      - task: validate:scenes
       - task: test:editmode
       - task: test:playmode
 

@@ -1,0 +1,8 @@
+repos:
+  - repo: local
+    hooks:
+      - id: validate-unity-scene-hierarchy
+        name: Validate Unity scene/prefab Transform hierarchy
+        entry: python3 Tools/validate_scene_hierarchy.py
+        language: system
+        files: \.(unity|prefab)$
