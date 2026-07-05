@@ -289,4 +289,74 @@ public class AnimalHabitatMatchingTests
         // Cleanup
         Object.DestroyImmediate(definition);
     }
+
+
+    [Test]
+    public void Draggable_MarksAsMatchedWhenCorrectDropHandled()
+    {
+        // Arrange
+        var animalGo = new GameObject("TestAnimal");
+        animalGo.transform.position = Vector3.zero;
+        var spriteRenderer = animalGo.AddComponent<SpriteRenderer>();
+        var collider = animalGo.AddComponent<BoxCollider2D>();
+        var draggable = animalGo.AddComponent<Draggable>();
+
+        // Act: Mark as matched
+        draggable.SetMatched(true);
+
+        // Assert
+        Assert.IsTrue(draggable.IsMatched(),
+            "Draggable should report as matched after SetMatched(true)");
+
+        // Cleanup
+        Object.DestroyImmediate(animalGo);
+    }
+
+    [Test]
+    public void DropZone_HandleDrop_WithDraggableParameter()
+    {
+        // Arrange
+        var dropZoneGo = new GameObject("DropZone");
+        var dropZone = dropZoneGo.AddComponent<DropZone>();
+        dropZone.SetExpectedAnimalId("Lion");
+
+        var animalGo = new GameObject("Animal");
+        var draggable = animalGo.AddComponent<Draggable>();
+
+        bool correctEventFired = false;
+        dropZone.OnCorrectMatch += () => correctEventFired = true;
+
+        // Act: Call HandleDrop with Draggable parameter (backward-compatible signature)
+        dropZone.HandleDrop("Lion", draggable);
+
+        // Assert
+        Assert.IsTrue(correctEventFired,
+            "OnCorrectMatch should fire even with new Draggable parameter");
+
+        // Cleanup
+        Object.DestroyImmediate(dropZoneGo);
+        Object.DestroyImmediate(animalGo);
+    }
+
+    [Test]
+    public void DropZone_HandleDrop_BackwardCompatible()
+    {
+        // Arrange: Verify that old code calling HandleDrop(string) still works
+        var dropZoneGo = new GameObject("DropZone");
+        var dropZone = dropZoneGo.AddComponent<DropZone>();
+        dropZone.SetExpectedAnimalId("Fish");
+
+        bool wrongEventFired = false;
+        dropZone.OnWrongMatch += () => wrongEventFired = true;
+
+        // Act: Call old signature (no Draggable parameter)
+        dropZone.HandleDrop("Cow");
+
+        // Assert
+        Assert.IsTrue(wrongEventFired,
+            "Old HandleDrop(string) signature should still work");
+
+        // Cleanup
+        Object.DestroyImmediate(dropZoneGo);
+    }
 }
