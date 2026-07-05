@@ -71,7 +71,20 @@ public static class HelloWorldSceneSetup
 
     private static void AddComponentByTypeName(GameObject go, string typeName)
     {
-        Type componentType = Type.GetType(typeName);
+        // Type.GetType(string) only searches mscorlib and the calling assembly
+        // (this Editor script's assembly), not the separate GiAiJoe.Scripts
+        // assembly the gameplay types live in - so it must be found by scanning
+        // all loaded assemblies instead.
+        Type componentType = null;
+        foreach (var assembly in AppDomain.CurrentDomain.GetAssemblies())
+        {
+            componentType = assembly.GetType(typeName);
+            if (componentType != null)
+            {
+                break;
+            }
+        }
+
         if (componentType != null)
         {
             go.AddComponent(componentType);
